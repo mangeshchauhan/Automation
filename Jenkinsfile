@@ -25,7 +25,7 @@ pipeline {
 
         stage('Deploy Website') {
             steps {
-                sshagent(['ec2-ssh-key']) {
+                sshagent(['Jenkins-ssh-key']) {
 
                     sh """
                     scp -o StrictHostKeyChecking=no \
