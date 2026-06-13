@@ -20,20 +20,21 @@ pipeline{
         stage('Deploy') {
             steps {
                 echo 'Deploying to EC2...'
-                sh "ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST}
+                sh '''
+                "ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST}
                 sudo apt update && sudo apt upgrade -y
                 sudo apt install nginx -y
                 sudo rm -rf /var/www/html/index.nginx-debian.html
                 sudo tee /var/www/html/index.html > /dev/null << 'EOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Pathshala</title>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>DevOps Pathshala</title>
 
-    <style>
-        *{
+                <style>
+                    *{
             margin:0;
             padding:0;
             box-sizing:border-box;
